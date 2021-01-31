@@ -19,6 +19,7 @@ class StringValidatorTest extends TestCase
         $v = new Validator();
         $schema = $v->string()->required();
         $this->assertFalse($schema->isValid(''));
+        $this->assertTrue($schema->isValid('kolya'));
     }
 
     public function testIsValid(): void

@@ -23,12 +23,14 @@ class StringValidator
 
     public function isValid(mixed $str): bool
     {
-        if (
-            !is_string($str)
-            || ($this->required && $this->str == '')
-            || (strlen($str) < $this->length)
-        ) {
+        if (!is_string($str)) {
             return false;
+        }
+        if ($this->required) {
+            return $str != '';
+        }
+        if ($this->length != 0) {
+            return strlen($str) >= $this->length;
         }
         if (!empty($this->activatedValidations)) {
             foreach ($this->activatedValidations as $validation) {
