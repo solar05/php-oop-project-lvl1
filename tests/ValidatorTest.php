@@ -14,4 +14,9 @@ class ValidatorTest extends TestCase
         $schema = $v->number();
         $this->assertTrue($schema->isValid(null));
     }
+
+    public function testStringValidator(): void
+    {
+        $this->assertTrue(true);
+    }
 }
