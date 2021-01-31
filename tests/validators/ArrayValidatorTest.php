@@ -1,9 +1,9 @@
 <?php
 
-namespace Validator\Tests\NumberValidator;
+namespace Hexlet\Validator\Tests\NumberValidator;
 
 use PHPUnit\Framework\TestCase;
-use Validator\Validator;
+use Hexlet\Validator\Validator;
 
 class ArrayValidatorTest extends TestCase
 {

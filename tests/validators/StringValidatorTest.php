@@ -1,9 +1,9 @@
 <?php
 
-namespace Validator\Tests\StringValidator;
+namespace Hexlet\Validator\Tests\StringValidator;
 
 use PHPUnit\Framework\TestCase;
-use Validator\Validator;
+use Hexlet\Validator\Validator;
 
 class StringValidatorTest extends TestCase
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Validator;
+namespace Hexlet\Validator;
 
-use Validator\Validators\ArrayValidator;
-use Validator\Validators\NumberValidator;
-use Validator\Validators\StringValidator;
+use Hexlet\Validator\Validators\ArrayValidator;
+use Hexlet\Validator\Validators\NumberValidator;
+use Hexlet\Validator\Validators\StringValidator;
 
 class Validator
 {
