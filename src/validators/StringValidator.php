@@ -6,6 +6,7 @@ class StringValidator
 {
     protected string $str = "";
     protected bool $required = false;
+    protected int $length = 0;
 
     public function contains(string $str = ''): StringValidator
     {
@@ -18,6 +19,7 @@ class StringValidator
         if (
             !is_string($str)
             || ($this->required && $this->str == '')
+            || (strlen($str) < $this->length)
         ) {
             return false;
         }
@@ -27,6 +29,12 @@ class StringValidator
     public function required(): StringValidator
     {
         $this->required = true;
+        return $this;
+    }
+
+    public function minLength(int $length): StringValidator
+    {
+        $this->length = $length;
         return $this;
     }
 }
