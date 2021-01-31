@@ -17,6 +17,15 @@ class ValidatorTest extends TestCase
 
     public function testStringValidator(): void
     {
-        $this->assertTrue(true);
+        $v = new Validator();
+        $schema = $v->string();
+        $this->assertTrue($schema->isValid(''));
+        $schema->required();
+        $this->assertTrue($schema->isValid('what does the fox say'));
+        $this->assertTrue($schema->isValid('hexlet'));
+        $this->assertFalse($schema->isValid(null));
+        $this->assertFalse($schema->isValid(''));
+        $this->assertTrue($schema->contains('what')->isValid('what does the fox say'));
+        $this->assertFalse($schema->contains('whatthe')->isValid('what does the fox say'));
     }
 }
