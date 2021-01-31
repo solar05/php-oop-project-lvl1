@@ -8,6 +8,13 @@ class NumberValidator
     protected bool $required = false;
     protected bool $positive = false;
     protected mixed $range = [];
+    protected mixed $customValidations = [];
+    protected mixed $activatedValidations = [];
+
+    public function __construct(mixed $validations = [])
+    {
+        $this->customValidations = $validations;
+    }
 
     public function isValid(mixed $number): bool
     {
@@ -23,6 +30,14 @@ class NumberValidator
         }
         if ($rangeSet) {
             return $this->inRange($number);
+        }
+        if (!empty($this->activatedValidations)) {
+            foreach ($this->activatedValidations as $validation) {
+                if (!$validation($number)) {
+                    $result[] = false;
+                }
+            }
+            return empty($result);
         }
         return true;
     }
@@ -42,6 +57,15 @@ class NumberValidator
     public function positive(): NumberValidator
     {
         $this->positive = true;
+        return $this;
+    }
+
+    public function test(string $name, int $value): NumberValidator
+    {
+        if (array_key_exists($name, $this->customValidations)) {
+            $fn = $this->customValidations[$name];
+            $this->activatedValidations[$name] = fn($num) => $fn($num, $value);
+        }
         return $this;
     }
 

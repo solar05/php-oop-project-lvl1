@@ -47,4 +47,14 @@ class NumberValidatorTest extends TestCase
         $this->assertTrue($schema->isValid(5));
         $this->assertFalse($schema->isValid(-3));
     }
+
+    public function testCustomValidations(): void
+    {
+        $v = new Validator();
+        $fn = fn($value, $min) => $value >= $min;
+        $v->addValidator('number', 'min', $fn);
+        $schema = $v->number()->test('min', 5);
+        $this->assertFalse($schema->isValid(4));
+        $this->assertTrue($schema->isValid(6));
+    }
 }
