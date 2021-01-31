@@ -1,8 +1,8 @@
 <?php
 
-namespace Validator\Validators\Number;
+namespace Validator\Validators;
 
-class Number
+class NumberValidator
 {
     public function test(): void
     {
