@@ -21,13 +21,7 @@ class ArrayValidator
         }
         if ($this->length != 0) {
             if (!empty($arr)) {
-                $result = [];
-                foreach ($arr as $val) {
-                    if (strlen($val) <= $this->length) {
-                        $result[] = false;
-                    }
-                }
-                return empty($result);
+                return count($arr) >= $this->length;
             } else {
                 return false;
             }
