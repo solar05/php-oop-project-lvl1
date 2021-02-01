@@ -19,7 +19,7 @@ class ArrayValidator
             }
             return empty($result);
         }
-        if ($this->length != 0) {
+        if ($this->length != 0 && array_key_exists(0, $arr)) {
             return strlen($arr[0]) >= $this->length;
         }
         if ($this->required) {
