@@ -5,7 +5,7 @@
 PHP library for validation.
 
 ## Usage example:
-`
+```
 <?php
 use Hexlet\Validator\Validator;
 
@@ -39,4 +39,5 @@ $v->addValidator('string', 'startWith', $fn);
 $schema = $v->string()->test('startWith', 'H');
 
 $schema->isValid('exlet'); // false
-$schema->isValid('Hexlet'); // true`
+$schema->isValid('Hexlet'); // true
+```
