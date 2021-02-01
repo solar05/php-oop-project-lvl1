@@ -40,5 +40,7 @@ class ValidatorTest extends TestCase
         $this->assertTrue($schema->isValid(['hexlet']));
         $this->assertFalse($schema->isValid(['he']));
         $this->assertFalse($schema->isValid([]));
+        $this->assertTrue($schema->isValid(['hexlet', 'sometext']));
+        $this->assertFalse($schema->isValid(['hexlet', 'so']));
     }
 }

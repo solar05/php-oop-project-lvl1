@@ -20,8 +20,14 @@ class ArrayValidator
             return empty($result);
         }
         if ($this->length != 0) {
-            if (array_key_exists(0, $arr)) {
-                return strlen($arr[0]) >= $this->length;
+            if (!empty($arr)) {
+                $result = [];
+                foreach ($arr as $val) {
+                    if (strlen($val) <= $this->length) {
+                        $result[] = false;
+                    }
+                }
+                return empty($result);
             } else {
                 return false;
             }
