@@ -13,34 +13,4 @@ class ValidatorTest extends TestCase
         $schema = $v->number();
         $this->assertTrue($schema->isValid(null));
     }
-
-    public function testStringValidator(): void
-    {
-        $v = new Validator();
-        $schema = $v->string();
-        $this->assertTrue($schema->isValid(''));
-        $schema->required();
-        $this->assertTrue($schema->isValid('what does the fox say'));
-        $this->assertTrue($schema->isValid('hexlet'));
-        $this->assertFalse($schema->isValid(null));
-        $this->assertFalse($schema->isValid(''));
-        $this->assertTrue($schema->contains('what')->isValid('what does the fox say'));
-        $this->assertFalse($schema->contains('whatthe')->isValid('what does the fox say'));
-    }
-
-    public function testArrayValidator(): void
-    {
-        $v = new Validator();
-        $schema = $v->array();
-        $this->assertTrue($schema->isValid(null));
-        $schema = $schema->required();
-        $this->assertTrue($schema->isValid([]));
-        $this->assertTrue($schema->isValid(['hexlet']));
-        $schema->sizeof(2);
-        $this->assertFalse($schema->isValid(['hexlet']));
-        $this->assertFalse($schema->isValid(['he']));
-        $this->assertFalse($schema->isValid([]));
-        $this->assertTrue($schema->isValid(['hexlet', 'sometext']));
-        $this->assertFalse($schema->isValid(['test' => 'sometext']));
-    }
 }

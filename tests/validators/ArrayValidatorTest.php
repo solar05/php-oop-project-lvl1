@@ -12,14 +12,28 @@ class ArrayValidatorTest extends TestCase
         $v = new Validator();
         $schema = $v->array();
         $this->assertTrue($schema->isValid(null));
+        $this->assertTrue($schema->isValid([]));
     }
 
     public function testRequired(): void
     {
         $v = new Validator();
         $schema = $v->array()->required();
+        $this->assertFalse($schema->isValid(null));
         $this->assertTrue($schema->isValid([]));
         $this->assertTrue($schema->isValid(['sometest']));
+    }
+
+    public function testSizeof(): void
+    {
+        $v = new Validator();
+        $schema = $v->array();
+        $schema->sizeof(2);
+        $this->assertFalse($schema->isValid(['hexlet']));
+        $this->assertFalse($schema->isValid(['he']));
+        $this->assertFalse($schema->isValid([]));
+        $this->assertTrue($schema->isValid(['hexlet', 'sometext']));
+        $this->assertFalse($schema->isValid(['test' => 'sometext']));
     }
 
     public function testShape(): void
