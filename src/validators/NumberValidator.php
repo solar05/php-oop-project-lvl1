@@ -31,13 +31,14 @@ class NumberValidator
         if ($rangeSet) {
             return $this->inRange($number);
         }
-        if (!empty($this->activatedValidations)) {
+        if (count($this->activatedValidations) > 0) {
+            $result = [];
             foreach ($this->activatedValidations as $validation) {
                 if (!$validation($number)) {
                     $result[] = false;
                 }
             }
-            return empty($result);
+            return count($result) === 0;
         }
         return true;
     }

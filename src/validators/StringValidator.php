@@ -32,13 +32,14 @@ class StringValidator
         if ($this->length != 0) {
             return strlen($str) >= $this->length;
         }
-        if (!empty($this->activatedValidations)) {
+        if (count($this->activatedValidations) > 0) {
+            $result = [];
             foreach ($this->activatedValidations as $validation) {
                 if (!$validation($str)) {
                     $result[] = false;
                 }
             }
-            return empty($result);
+            return count($result) === 0;
         }
         return str_contains($str, $this->str);
     }

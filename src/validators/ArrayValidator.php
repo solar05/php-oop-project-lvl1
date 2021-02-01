@@ -10,17 +10,17 @@ class ArrayValidator
 
     public function isValid(mixed $arr): bool
     {
-        if (!empty($this->shape)) {
+        if (count($this->shape) > 0) {
             $result = [];
             foreach ($arr as $name => $val) {
                 if (!$this->shape[$name]->isValid($val)) {
                     $result[] = false;
                 }
             }
-            return empty($result);
+            return count($result) === 0;
         }
         if ($this->length != 0) {
-            if (!empty($arr)) {
+            if (count($arr) > 0) {
                 return count($arr) >= $this->length;
             } else {
                 return false;
