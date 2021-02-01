@@ -27,4 +27,14 @@ class ValidatorTest extends TestCase
         $this->assertTrue($schema->contains('what')->isValid('what does the fox say'));
         $this->assertFalse($schema->contains('whatthe')->isValid('what does the fox say'));
     }
+
+    public function testArrayValidator(): void
+    {
+        $v = new Validator();
+        $schema = $v->array();
+        $this->assertFalse($schema->isValid(null));
+        $schema = $schema->required();
+        $this->assertTrue($schema->isValid([]));
+        $this->assertTrue($schema->isValid(['hexlet']));
+    }
 }
