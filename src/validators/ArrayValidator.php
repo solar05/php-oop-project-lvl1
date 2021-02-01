@@ -6,6 +6,7 @@ class ArrayValidator
 {
     protected bool $required = false;
     protected mixed $shape = [];
+    protected int $length = 0;
 
     public function isValid(mixed $arr): bool
     {
@@ -17,6 +18,9 @@ class ArrayValidator
                 }
             }
             return empty($result);
+        }
+        if ($this->length != 0) {
+            return strlen($arr[0]) >= $this->length;
         }
         if ($this->required) {
             return is_array($arr);
@@ -33,6 +37,12 @@ class ArrayValidator
     public function shape(mixed $validators): ArrayValidator
     {
         $this->shape = $validators;
+        return $this;
+    }
+
+    public function sizeof(int $length): ArrayValidator
+    {
+        $this->length = $length;
         return $this;
     }
 }
