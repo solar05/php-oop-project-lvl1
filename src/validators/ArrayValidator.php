@@ -18,7 +18,10 @@ class ArrayValidator
             }
             return empty($result);
         }
-        return is_array($arr);
+        if ($this->required) {
+            return is_array($arr);
+        }
+        return true;
     }
 
     public function required(): ArrayValidator

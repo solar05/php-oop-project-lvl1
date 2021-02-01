@@ -11,7 +11,7 @@ class ArrayValidatorTest extends TestCase
     {
         $v = new Validator();
         $schema = $v->array();
-        $this->assertFalse($schema->isValid(null));
+        $this->assertTrue($schema->isValid(null));
     }
 
     public function testRequired(): void

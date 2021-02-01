@@ -32,7 +32,7 @@ class ValidatorTest extends TestCase
     {
         $v = new Validator();
         $schema = $v->array();
-        $this->assertFalse($schema->isValid(null));
+        $this->assertTrue($schema->isValid(null));
         $schema = $schema->required();
         $this->assertTrue($schema->isValid([]));
         $this->assertTrue($schema->isValid(['hexlet']));
