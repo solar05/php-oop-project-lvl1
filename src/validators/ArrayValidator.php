@@ -19,8 +19,12 @@ class ArrayValidator
             }
             return empty($result);
         }
-        if ($this->length != 0 && array_key_exists(0, $arr)) {
-            return strlen($arr[0]) >= $this->length;
+        if ($this->length != 0) {
+            if (array_key_exists(0, $arr)) {
+                return strlen($arr[0]) >= $this->length;
+            } else {
+                return false;
+            }
         }
         if ($this->required) {
             return is_array($arr);
