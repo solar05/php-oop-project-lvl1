@@ -27,7 +27,7 @@ class StringValidator
             return false;
         }
         if ($this->required) {
-            return $str != '';
+            return $str != '' ? str_contains($str, $this->str) : false;
         }
         if ($this->length != 0) {
             return strlen($str) >= $this->length;

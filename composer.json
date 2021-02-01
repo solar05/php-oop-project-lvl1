@@ -14,7 +14,9 @@
     "autoload": {
         "psr-4": {
           "Hexlet\\Validator\\": "src",
-          "Hexlet\\Validator\\Tests\\": "tests"
+          "Hexlet\\Validator\\Validators\\": "src/validators",
+          "Hexlet\\Validator\\Tests\\": "tests",
+          "Hexlet\\Validator\\Validators\\Tests\\": "tests/validators"
         }
       },
     "license": "MIT",

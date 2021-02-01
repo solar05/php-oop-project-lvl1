@@ -1,6 +1,6 @@
 <?php
 
-namespace Hexlet\Validator\Tests\NumberValidator;
+namespace Hexlet\Validator\Validators\Tests\NumberValidator;
 
 use PHPUnit\Framework\TestCase;
 use Hexlet\Validator\Validator;
