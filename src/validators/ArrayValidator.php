@@ -4,49 +4,40 @@ namespace Hexlet\Validator\Validators;
 
 class ArrayValidator
 {
-    protected bool $required = false;
-    protected mixed $shape = [];
-    protected int $length = 0;
+    protected mixed $validations = [];
 
     public function isValid(mixed $arr): bool
     {
-        if (count($this->shape) > 0) {
-            $result = [];
-            foreach ($arr as $name => $val) {
-                if (!$this->shape[$name]->isValid($val)) {
-                    $result[] = false;
-                }
-            }
-            return count($result) === 0;
-        }
-        if ($this->length != 0) {
-            if (count($arr) > 0) {
-                return count($arr) >= $this->length;
-            } else {
+        foreach ($this->validations as $validation) {
+            if (!$validation($arr)) {
                 return false;
             }
-        }
-        if ($this->required) {
-            return is_array($arr);
         }
         return true;
     }
 
     public function required(): ArrayValidator
     {
-        $this->required = true;
+        $this->validations['required'] = fn($arr) => is_array($arr);
         return $this;
     }
 
     public function shape(mixed $validators): ArrayValidator
     {
-        $this->shape = $validators;
+        $this->validations['shape'] = function($shape) use ($validators) {
+            foreach ($shape as $name => $val) {
+                if (!$validators[$name]->isValid($val)) {
+                    return false;
+                }
+            }
+            return true;
+        };
         return $this;
     }
 
     public function sizeof(int $length): ArrayValidator
     {
-        $this->length = $length;
+        $this->validations['size'] = fn($arr) => count($arr) >= $length;
         return $this;
     }
 }
