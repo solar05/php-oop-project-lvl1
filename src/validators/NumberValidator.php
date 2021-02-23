@@ -6,7 +6,6 @@ class NumberValidator extends AbstractValidator
 {
     public function __construct(mixed $validations = [])
     {
-        $this->validations['default'] = fn($number) => $number == null || is_integer($number);
         $this->customValidations = $validations;
     }
 
