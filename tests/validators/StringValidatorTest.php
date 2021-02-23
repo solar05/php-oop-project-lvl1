@@ -26,7 +26,7 @@ class StringValidatorTest extends TestCase
     {
         $v = new Validator();
         $schema = $v->string();
-        $this->assertFalse($schema->isValid(null));
+        $this->assertTrue($schema->isValid(null));
         $this->assertTrue($schema->isValid('what does the fox say'));
         $this->assertFalse($schema->isValid(['some word']));
     }

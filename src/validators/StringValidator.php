@@ -6,19 +6,20 @@ class StringValidator extends AbstractValidator
 {
     public function __construct(mixed $validations = [])
     {
-        $this->validations['default'] = fn($str) => is_string($str);
+        $this->validations['required'] = fn($str) => is_string($str);
         $this->customValidations = $validations;
+    }
+
+    public function required(): StringValidator
+    {
+        $this->nullable = false;
+        $this->validations['required'] = fn($str) => $str !== '';
+        return $this;
     }
 
     public function contains(string $string = ''): StringValidator
     {
         $this->validations['contains'] = fn($str) => str_contains($str, $string);
-        return $this;
-    }
-
-    public function required(): StringValidator
-    {
-        $this->validations['required'] = fn($str) => is_string($str) && $str !== '';
         return $this;
     }
 

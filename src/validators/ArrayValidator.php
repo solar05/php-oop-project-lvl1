@@ -4,10 +4,9 @@ namespace Hexlet\Validator\Validators;
 
 class ArrayValidator extends AbstractValidator
 {
-    public function required(): ArrayValidator
+    public function __construct()
     {
-        $this->validations['required'] = fn($arr) => is_array($arr);
-        return $this;
+        $this->validations['default'] = fn($arr) => is_array($arr);
     }
 
     public function shape(mixed $validators): ArrayValidator

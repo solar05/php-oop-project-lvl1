@@ -6,14 +6,8 @@ class NumberValidator extends AbstractValidator
 {
     public function __construct(mixed $validations = [])
     {
-        $this->validations['default'] = fn($number) => $number == null || is_numeric($number);
+        $this->validations['default'] = fn($number) => is_numeric($number);
         $this->customValidations = $validations;
-    }
-
-    public function required(): NumberValidator
-    {
-        $this->validations['required'] = fn($number) => is_numeric($number);
-        return $this;
     }
 
     public function range(int $min, int $max): NumberValidator
