@@ -23,7 +23,7 @@ class NumberValidator extends AbstractValidator
 
     public function positive(): NumberValidator
     {
-        $this->validations['positive'] = fn($number) => $number == null ? true : $number > 0;
+        $this->validations['positive'] = fn($number) => $number > 0;
         return $this;
     }
 }
