@@ -2,10 +2,8 @@
 
 namespace Hexlet\Validator\Validators;
 
-class ArrayValidator
+class ArrayValidator extends AbstractValidator
 {
-    protected mixed $validations = [];
-
     public function isValid(mixed $arr): bool
     {
         foreach ($this->validations as $validation) {
@@ -24,7 +22,7 @@ class ArrayValidator
 
     public function shape(mixed $validators): ArrayValidator
     {
-        $this->validations['shape'] = function($shape) use ($validators) {
+        $this->validations['shape'] = function ($shape) use ($validators) {
             foreach ($shape as $name => $val) {
                 if (!$validators[$name]->isValid($val)) {
                     return false;

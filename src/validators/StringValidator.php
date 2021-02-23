@@ -2,11 +2,8 @@
 
 namespace Hexlet\Validator\Validators;
 
-class StringValidator
+class StringValidator extends AbstractValidator
 {
-    protected mixed $customValidations = [];
-    protected mixed $validations = [];
-
     public function __construct(mixed $validations = [])
     {
         $this->validations['default'] = fn($str) => is_string($str);
@@ -19,28 +16,9 @@ class StringValidator
         return $this;
     }
 
-    public function isValid(mixed $str): bool
-    {
-        foreach ($this->validations as $validation) {
-            if (!$validation($str)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public function required(): StringValidator
     {
         $this->validations['required'] = fn($str) => is_string($str) && $str !== '';
-        return $this;
-    }
-
-    public function test(string $name, string $value): StringValidator
-    {
-        if (array_key_exists($name, $this->customValidations)) {
-            $fn = $this->customValidations[$name];
-            $this->validations[$name] = fn($string) => $fn($string, $value);
-        }
         return $this;
     }
 
