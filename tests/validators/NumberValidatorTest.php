@@ -17,7 +17,9 @@ class NumberValidatorTest extends TestCase
     public function testRequired(): void
     {
         $v = new Validator();
-        $schema = $v->number()->required();
+        $schema = $v->number();
+        $this->assertTrue($schema->isValid(null));
+        $schema->required();
         $this->assertFalse($schema->isValid(null));
         $this->assertTrue($schema->isValid(2));
     }
