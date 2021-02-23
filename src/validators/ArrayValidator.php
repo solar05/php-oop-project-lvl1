@@ -4,16 +4,6 @@ namespace Hexlet\Validator\Validators;
 
 class ArrayValidator extends AbstractValidator
 {
-    public function isValid(mixed $arr): bool
-    {
-        foreach ($this->validations as $validation) {
-            if (!$validation($arr)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public function required(): ArrayValidator
     {
         $this->validations['required'] = fn($arr) => is_array($arr);
