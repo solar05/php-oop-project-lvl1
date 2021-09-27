@@ -5,7 +5,7 @@
 PHP library for validation.
 
 ## Usage example:
-```
+```PHP
 <?php
 use Hexlet\Validator\Validator;
 
